@@ -3,9 +3,13 @@ name: CI
 on: [push]
 
 jobs:
-  phpunit:
+  test-working-directory:
     runs-on: ubuntu-latest
+    name: Test
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
     steps:
-      - name: Setup Symfony
-        working-directory: master/server
-        run: gradle clean test
+      - run: gradle clean test 
+       
+    
