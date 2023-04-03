@@ -5,6 +5,6 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: cd server
+      - run: pwd
       - run: gradle clean test
       - run: gradle runServer
