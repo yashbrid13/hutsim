@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup Symfony
-        working-directory: ./server
+        working-directory: master/server
         run: gradle clean test
