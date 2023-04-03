@@ -8,7 +8,3 @@ jobs:
       - name: Run Tests
         working-directory: hutsim/server
         run: gradle clean test
-      - run: dir
-      - run: ls
-      - run: gradle clean test
-      - run: gradle runServer
