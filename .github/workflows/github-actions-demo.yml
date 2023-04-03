@@ -7,5 +7,5 @@ jobs:
     
     steps:
       - name: Run Tests
-        working-directory: /hutsim
+        working-directory: /hutsim/server
         run: gradle clean test
