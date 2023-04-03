@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Tests
-        working-directory: server
+        working-directory: hutsim/server
         run: gradle clean test
       - run: dir
       - run: ls
