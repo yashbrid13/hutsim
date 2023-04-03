@@ -6,10 +6,8 @@ jobs:
   test-working-directory:
     runs-on: ubuntu-latest
     name: Test
-    defaults:
-      run:
-        working-directory: ${{ inputs.working-directory }}
     steps:
+      - run: cd  ${{ inputs.working_directory }}
       - run: gradle clean test 
        
     
