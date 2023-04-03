@@ -7,5 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Change dir
+        run: cd server
       - name: Run gradle test
-        run: dir
+        run: gradle clean test
