@@ -6,5 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: pwd
+      - run: dir
       - run: gradle clean test
       - run: gradle runServer
