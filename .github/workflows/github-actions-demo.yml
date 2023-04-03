@@ -5,6 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+      - working-directory: ./server
       - run: pwd
       - run: dir
       - run: ls
