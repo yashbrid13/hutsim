@@ -5,8 +5,9 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - working-directory: ./server
-      - run: pwd
+      - name: Run Tests
+        working-directory: ./server
+        run: gradle clean test
       - run: dir
       - run: ls
       - run: gradle clean test
