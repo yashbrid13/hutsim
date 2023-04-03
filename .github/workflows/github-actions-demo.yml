@@ -1,13 +1,15 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+name: CI
+
 on: [push]
+
 jobs:
-  Explore-GitHub-Actions:
+  phpunit:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Tests
-        working-directory: hutsim/server
+      - uses: actions/checkout@v2
+      - name: Run tests
+        working-directory: server
         run: gradle clean test
       - name: Run server
-        working-directory: hutsim/server
+        working-directory: server
         run: gradle runServer
