@@ -9,6 +9,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Change dir
         working-directory: server
-        run: dir
+        run: gradle clean test
 #       - name: Run gradle test
 #         run: gradle clean test
