@@ -8,3 +8,6 @@ jobs:
       - name: Run Tests
         working-directory: hutsim/server
         run: gradle clean test
+      - name: Run server
+        working-directory: hutsim/server
+        run: gradle runServer
