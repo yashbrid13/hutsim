@@ -8,6 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Change dir
-        run: cd server
+        run: cd server | dir
       - name: Run gradle test
         run: gradle clean test
