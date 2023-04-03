@@ -7,5 +7,6 @@ jobs:
     steps:
       - run: pwd
       - run: dir
+      - run: ls
       - run: gradle clean test
       - run: gradle runServer
