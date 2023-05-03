@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id 'eclipse'
     id 'java'
+    id 'jacoco'
 }
 archivesBaseName = 'someJar'
 version = '1.0-SNAPSHOT'
@@ -12,13 +13,19 @@ repositories {
     gradlePluginPortal()
 }
 
+// allprojects{
+//     repositories{
+//         mavenCentral()javadoc -protected -splitindex -use -author -version -d /home/ftech/hut
+//     }
+// }
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testImplementation 'org.mockito:mockito-core:2.1.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
     implementation 'org.junit.jupiter:junit-jupiter:5.9.2'
     implementation 'log4j:log4j:1.2.17'
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.rabbitmq:amqp-client:5.16.0'
     implementation 'org.mongodb:mongodb-driver:3.12.12'
     implementation 'uk.com.robust-it:cloning:1.9.12'
@@ -26,18 +33,20 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'org.slf4j:slf4j-simple:1.7.25'
-    implementation "gradle.plugin.com.github.johnrengelman:shadow:7.1.2"
 }
 
-// test {
-//     useJUnitPlatform()
-//     testLogging.showStandardStreams = true
-//     reports {
-//         junitXml.enabled = false
-//         html.enabled = true
-//     } 
-// }
-
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    reports {
+        junitXml.enabled = false
+        html.enabled = true
+    } 
+    // jacoco {
+    //     destinationFile = layout.buildDirectory.file('jacoco/jacocoTest.exec').get().asFile
+    //     classDumpDir = layout.buildDirectory.dir('jacoco/classpathdumps').get().asFile
+    // }
+}
 
 jar {
     manifest {
@@ -51,13 +60,21 @@ jar {
     }
 }
 
+javadoc {
+    include('home/ftech/hut/hut/server/src/*')
+    configurations.implementation.setCanBeResolved(true)
+    source = sourceSets.main.allJava
+    classpath = sourceSets.main.runtimeClasspath
+    destinationDir = reporting.file("rest-api-docs")
+}
+
 //Task to generate .jar file of the project
 task genJar(type: Jar) {
 	manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
         	'Main-Class': 'server.Simulator'
     }
-   baseName = 'all-in-one-jar'
+//   baseName = 'all-in-one-jar'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     dependsOn ('dependencies')
     from { 
@@ -79,3 +96,4 @@ task runserver (dependsOn: copyFromLibs, type: JavaExec) {
     classpath += sourceSets.main.runtimeClasspath
     main = "server.Simulator"
 }
+

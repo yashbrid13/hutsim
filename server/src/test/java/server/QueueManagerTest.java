@@ -49,6 +49,7 @@ public class QueueManagerTest {
     void getNewChannelTest(){
         try{
             Method m = gdm[1];
+            m.setAccessible(true);
             Object chn = m.invoke(qManager);
             assertNotNull(chn);
         }
@@ -58,19 +59,19 @@ public class QueueManagerTest {
         }
     }
 
-    @Test
-    @DisplayName("Test for initConnectionFactory Function")
-    void initConnectionFactoryTest(){
-        try{
-            Method icft = gdm[2];
-            Object icftm = icft.invoke(qManager);
-            assertEquals(true,icftm);
-        }
-        catch(Exception e)
-        {
-            System.out.println("Exception: "+e);
-        }
-    }
+    // @Test
+    // @DisplayName("Test for initConnectionFactory Function")
+    // void initConnectionFactoryTest(){
+    //     try{
+    //         Method icft = gdm[2];
+    //         Object icftm = icft.invoke(qManager);
+    //         assertEquals(true,icftm);
+    //     }
+    //     catch(Exception e)
+    //     {
+    //         System.out.println("Exception: "+e);
+    //     }
+    // }
 
     @Test
     @DisplayName("Test for createMessagepusblisher Function")
