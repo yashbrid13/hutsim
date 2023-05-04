@@ -13,12 +13,6 @@ repositories {
     gradlePluginPortal()
 }
 
-// allprojects{
-//     repositories{
-//         mavenCentral()javadoc -protected -splitindex -use -author -version -d /home/ftech/hut
-//     }
-// }
-
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testImplementation 'org.mockito:mockito-core:2.1.0'
@@ -42,10 +36,6 @@ test {
         junitXml.enabled = false
         html.enabled = true
     } 
-    // jacoco {
-    //     destinationFile = layout.buildDirectory.file('jacoco/jacocoTest.exec').get().asFile
-    //     classDumpDir = layout.buildDirectory.dir('jacoco/classpathdumps').get().asFile
-    // }
 }
 
 jar {
