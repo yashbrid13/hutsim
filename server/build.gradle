@@ -58,7 +58,7 @@ javadoc {
     destinationDir = reporting.file("rest-api-docs")
 }
 
-// Task to generate .jar file for the project
+// Task to generate .jar file of the project
 task genJar(type: Jar) {
 	manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
