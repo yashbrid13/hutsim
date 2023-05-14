@@ -32,10 +32,10 @@ dependencies {
 test {
     useJUnitPlatform()
     testLogging.showStandardStreams = true
-    reports {
-        junitXml.enabled = false
-        html.enabled = true
-    } 
+    // reports {
+    //     junitXml.enabled = false
+    //     html.enabled = true
+    // } 
 }
 
 jar {

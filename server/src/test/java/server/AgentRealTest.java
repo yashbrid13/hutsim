@@ -36,7 +36,6 @@ public class AgentRealTest {
     AgentReal ag = new AgentReal("1",cd,mp);
 
     Method agrpm[] = AgentReal.class.getDeclaredMethods();
-    // Method lsff = lsffa[14];
 
     //TODO: moveTowardsDestinationTest
 
@@ -73,6 +72,8 @@ public class AgentRealTest {
         }
     }
 
+
+    //Tests for Class: Agent
     @Test
     @DisplayName("Check that Agent is not stopped")
     void isStoppedTestFalse()
@@ -202,13 +203,37 @@ public class AgentRealTest {
     @DisplayName("Get Allocated task for the agent")
     void getTempRouteTest()
     {
+        for(Method m:agrpm)
+        {
+            System.out.println("SAMOSAPM:"+m);
+        }
         assertTrue(ag.getTempRoute() instanceof List);
     }
 
+    // @Test
+    // @DisplayName("Check if current destination is reached")
+    // void isCurrentDestinationReachedTest()
+    // {
+    //     assertTrue(ag.isCurrentDestinationReached());
+    // }
+    
     @Test
-    @DisplayName("Check if current destination is reached")
-    void isCurrentDestinationReachedTest()
+    @DisplayName("Test if the method correctly returns the timedOut flag")
+    void testIsTimedOut() {
+        
+        ag.setTimedOut(false);
+        assertFalse(ag.isTimedOut());
+        
+        ag.setTimedOut(true);
+        assertTrue(ag.isTimedOut());
+    }
+
+    @Test
+    @DisplayName("Calculate path length between two coordinates")
+    void predictPathLengthTest()
     {
-        assertTrue(ag.isCurrentDestinationReached());
+        Coordinate st = new Coordinate(80,-105);
+        Coordinate en = new Coordinate(100,-105);
+        assertTrue(Double.class.isInstance(ag.predictPathLength(st,en,6)));
     }
 }

@@ -86,7 +86,7 @@ public abstract class Task extends MObject implements Serializable {
         }
 
         if (status == Task.STATUS_DOING) {
-            for (Agent agent : getAgents())
+            for (Agent agent : getAgents()) 
                 if (agent.isFinalDestinationReached())
                     agent.setWorking(true);
             if(perform())
