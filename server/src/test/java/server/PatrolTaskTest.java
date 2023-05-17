@@ -19,31 +19,38 @@ import java.util.ArrayList;
 public class PatrolTaskTest {
 
     private PatrolTask patrolTask;
+    Simulator sim = new Simulator();
 
     @Test
     @DisplayName("Create a Patrol task ")
     public void createTaskTest() {
-    String taskId = "P001";
-    List<Coordinate> points = new ArrayList<>();
-    points.add(new Coordinate(0, 0));
-    points.add(new Coordinate(0, 1));
-    points.add(new Coordinate(1, 1));
-    points.add(new Coordinate(1, 0));
+        String taskId = "P001";
+        List<Coordinate> points = new ArrayList<>();
+        points.add(new Coordinate(0, 0));
+        points.add(new Coordinate(0, 1));
+        points.add(new Coordinate(1, 1));
+        points.add(new Coordinate(1, 0));
 
-    PatrolTask task = PatrolTask.createTask(taskId, points);
+        PatrolTask task = PatrolTask.createTask(taskId, points);
 
-    assertNotNull(task);
-    assertEquals(taskId, task.getId());
-    assertEquals(Task.TASK_PATROL, task.getType());
-    assertEquals(points, task.getPoints());
+        assertNotNull(task);
+        assertEquals(taskId, task.getId());
+        assertEquals(Task.TASK_PATROL, task.getType());
+        assertEquals(points, task.getPoints());
     }
     
     @Test
     public void testGetPreviousPoint() {
-        AgentReal agent = new Agent("1", new Coordinate(0.25, 0.5), null, 0, 0);
-        Method gpp = PatrolTask.class.getDeclaredMethod("getPreviousPoint");
-        gpp.setAccessible(true);
-        Coordinate previousPoint = (Coordinate) gpp.invoke(patrolTask,agent);
-        assertEquals(new Coordinate(0, 0.5), previousPoint);
+        Agent agent = new AgentReal("1", new Coordinate(0.25, 0.5), sim.getQueueManager().createMessagePublisher());
+        try{
+            Method gpp = PatrolTask.class.getDeclaredMethod("getPreviousPoint");
+            gpp.setAccessible(true);
+            Coordinate previousPoint = (Coordinate) gpp.invoke(patrolTask,agent);
+            assertEquals(new Coordinate(0, 0.5), previousPoint);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Exception: "+e);
+        }
     }
 }

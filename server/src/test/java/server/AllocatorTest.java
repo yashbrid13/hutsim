@@ -36,9 +36,7 @@ public class AllocatorTest {
     void getOldResultTest()
     {
         System.out.println("SAMSOATEST:"+alloc.getOldResult());
-        // assertTrue(alloc.getOldResult() instanceof Map<String,String>);
+        assertNotNull(alloc.getOldResult());
     }
-
-    //TODO: Test Ongoing void methods
    
 }
